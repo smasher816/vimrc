@@ -1,0 +1,6 @@
+To install:
+curl https://raw.githubusercontent.com/smasher816/vimrc/master/install.sh
+chmod +x install.sh
+./install.sh
+
+If you use neovim please symlink .nvimrc->.vimrc, and .nvim->.vim

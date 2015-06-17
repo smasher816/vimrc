@@ -5,9 +5,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 if plug#begin()
-	silent! source ~/.nvim/plugins.vim
+	silent! source ~/.vim/plugins.vim
 	Plug 'smasher816/vimrc'
-	source ~/.nvim/plugged/vimrc/plugins.vim
+	source ~/.vim/plugged/vimrc/plugins.vim
 call plug#end()
 endif
 
