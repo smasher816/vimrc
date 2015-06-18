@@ -5,7 +5,7 @@ cnoreabbrev <expr> h getcmdtype() == ":" && getcmdline() == 'h' ? 'Help' : 'h'
 "make vim look nice
 filetype on
 syntax on
-if has#colorscheme('jellybeans')
+if filereadable("$VIMHOME/colors/jellybeans.vim")
   color jellybeans
 endif
 
@@ -248,8 +248,9 @@ let g:syntastic_check_on_wq = 0
 "let g:syntastic_auto_jump=2
 
 
-let g:tcommentInlineC = tcomment#GetLineC('//%s')
-let g:tcommentBlockC = {
+if exists(":TComment")
+	let g:tcommentInlineC = tcomment#GetLineC('//%s')
+	let g:tcommentBlockC = {
                 \ 'commentstring': '/*%s */',
 				\ 'begin': '/*',
 				\ 'end': '*/',
@@ -259,7 +260,6 @@ let g:tcommentBlockC = {
                 \ 'rxmid': '',
                 \ 'replacements': g:tcomment#replacements_c
                 \ }
-if exists(":TComment")
 	call tcomment#DefineType('c',                tcomment#GetLineC('//%s'))
 	call tcomment#DefineType('c_block',          g:tcommentBlockC   )
 	call tcomment#DefineType('c_inline',         g:tcommentInlineC  )
