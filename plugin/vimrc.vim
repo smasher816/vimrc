@@ -52,6 +52,9 @@ set nojoinspaces
 set showbreak=«
 set cursorline
 set whichwrap+=<,>,[,]
+if v:version>=700
+  set colorcolumn=100
+endif
 
 set linebreak
 set textwidth=0
@@ -67,12 +70,14 @@ set switchbuf=useopen,usetab
 
 set history=1024
 set undolevels=1024
-if v:version >= 730
+if has('persistent_undo')
+  if !isdirectory(expand("$VIMHOME/undo"))
+	silent !mkdir -p $VIMHOME/{undo,swp,backup}
+  endif
   set backupdir=~/.vim/backup//,.
   set directory=~/.vim/swp//,.
   set undodir=~/.vim/undo//,.
   set undofile
-  set colorcolumn=100
 endif
 
 let mapleader=" "
