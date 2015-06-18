@@ -1,12 +1,14 @@
 if [ -x "$(command -v nvim)" ]; then
-	: ${VIMRC:=~/.nvimrc}
-	: ${VIMHOME:=~/.nvim}
-	: ${VIMBIN:=nvim}
+	VIMRC=${VIMRC:-~/.nvimrc}
+	VIMHOME=${VIMHOME:-~/.nvim}
+	VIMBIN=${VIMBIN:-nvim}
 else
-	: {VIMRC:=~/.vimrc}
-	: {VIMHOME:=~/.vim}
-	: {VIMBIN:=vim}
+	VIMRC=${VIMRC:-~/.vimrc}
+	VIMHOME=${VIMHOME:-~/.vim}
+	VIMBIN=${VIMBIN:-vim}
 fi
+
+echo VIMHOME=$VIMHOME
 
 mkdir -p $VIMHOME/plugged
 cd $VIMHOME/plugged
@@ -16,7 +18,6 @@ mkdir -p $VIMHOME/autoload
 cd  $VIMHOME/autoload
 ln -s ../plugged/vimrc/bootstrap.vim .
 
-echo "VIMRC=$VIMRC"
 if [ -e $VIMRC ]; then
 	grep -qse "bootstrap#init()" $VIMRC || sed -i '1icall bootstrap#init()\' $VIMRC
 else

@@ -5,7 +5,9 @@ cnoreabbrev <expr> h getcmdtype() == ":" && getcmdline() == 'h' ? 'Help' : 'h'
 "make vim look nice
 filetype on
 syntax on
-color jellybeans
+if has#colorscheme('jellybeans')
+  color jellybeans
+endif
 
 "load modeline options securely
 set exrc
@@ -53,7 +55,6 @@ set whichwrap+=<,>,[,]
 
 set linebreak
 set textwidth=0
-set colorcolumn=100
 set scrolloff=3
 set sidescrolloff=3
 
@@ -66,12 +67,13 @@ set switchbuf=useopen,usetab
 
 set history=1024
 set undolevels=1024
-"if !empty($SUDO_USER) && $USER !=# $SUDO_USER
+if v:version >= 730
   set backupdir=~/.vim/backup//,.
   set directory=~/.vim/swp//,.
   set undodir=~/.vim/undo//,.
   set undofile
-"endif
+  set colorcolumn=100
+endif
 
 let mapleader=" "
 nnoremap <leader>e :CtrlP<CR>
@@ -257,11 +259,13 @@ let g:tcommentBlockC = {
                 \ 'rxmid': '',
                 \ 'replacements': g:tcomment#replacements_c
                 \ }
-call tcomment#DefineType('c',                tcomment#GetLineC('//%s'))
-call tcomment#DefineType('c_block',          g:tcommentBlockC   )
-call tcomment#DefineType('c_inline',         g:tcommentInlineC  )
-nnoremap // :TComment<CR>
-vnoremap // :TCommentBlock<CR>
+if exists(":TComment")
+	call tcomment#DefineType('c',                tcomment#GetLineC('//%s'))
+	call tcomment#DefineType('c_block',          g:tcommentBlockC   )
+	call tcomment#DefineType('c_inline',         g:tcommentInlineC  )
+	nnoremap // :TComment<CR>
+	vnoremap // :TCommentBlock<CR>
+endif
 
 function! ToggleErrors()
     let old_last_winnr = winnr('$')
