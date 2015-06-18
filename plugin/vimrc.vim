@@ -5,7 +5,7 @@ cnoreabbrev <expr> h getcmdtype() == ":" && getcmdline() == 'h' ? 'Help' : 'h'
 "make vim look nice
 filetype on
 syntax on
-if filereadable("$VIMHOME/colors/jellybeans.vim")
+if filereadable(expand("$VIMHOME/plugged/jellybeans.vim/colors/jellybeans.vim"))
   color jellybeans
 endif
 
