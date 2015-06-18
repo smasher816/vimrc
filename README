@@ -1,6 +1,12 @@
 To install:
-curl https://raw.githubusercontent.com/smasher816/vimrc/master/install.sh
+curl -fLO https://raw.githubusercontent.com/smasher816/vimrc/master/install.sh
 chmod +x install.sh
 ./install.sh
 
-If you use neovim please symlink .nvimrc->.vimrc, and .nvim->.vim
+It's that easy. One line gets you a fully setup and configured vim!
+
+The install script will automatically clone this git repository, symlink the bootstrap file, and make sure the vimrc calls the bootstrapper. The bootstrap will load my custom vimrc and handle loading of all the plugins. If you had a previous .vimrc config its contents will be preserved.
+
+Since the configuration and plugin list are all in this repo it can be updated with the other plugins. Simply run :PlugUpdate and you will have all the new tweaks.
+
+The script will automatically try to determine if you have neovim installed, and if you do modifify its files. If you would like to share the configuration between both vim and neovim you should consider creating symlinks for ~/.nvim and ~/.nvimrc. If more exotic setups are required then you may set the $VIMRC and $VIMRTP environment variables before calling the script. This will let you edit any config file and directory.

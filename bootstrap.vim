@@ -1,13 +1,17 @@
+if empty($VIMHOME)
+	let $VIMHOME=expand('<sfile>:p:h:h')
+endif
+
 function! bootstrap#init()
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('$VIMHOME/autoload/plug.vim'))
+  silent !curl -fLo $VIMHOME/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 if plug#begin()
-	silent! source ~/.vim/plugins.vim
+	silent! source $VIMHOME/plugins.vim
 	Plug 'smasher816/vimrc'
-	source ~/.vim/plugged/vimrc/plugins.vim
+	source $VIMHOME/plugged/vimrc/plugins.vim
 call plug#end()
 endif
 
