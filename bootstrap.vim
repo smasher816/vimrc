@@ -3,6 +3,10 @@ if empty($VIMHOME)
 endif
 
 function! bootstrap#init()
+if !isdirectory(expand("$VIMHOME/undo"))
+  silent !mkdir -p $VIMHOME/{undo,swp,backup}
+endif
+
 if empty(glob('$VIMHOME/autoload/plug.vim'))
   silent !curl -fLo $VIMHOME/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
