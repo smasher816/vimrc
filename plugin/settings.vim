@@ -1,3 +1,7 @@
+if exists('g:vimrc_loaded')
+	finish
+endif
+
 "make vim look nice
 filetype plugin indent on
 syntax on

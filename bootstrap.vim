@@ -20,10 +20,14 @@ if empty(glob('$VIMHOME/spell/*'))
 endif
 
 if plug#begin()
-	silent! source $VIMHOME/plugins.vim
 	Plug 'smasher816/vimrc'
+	silent! source $VIMHOME/plugins.vim
 	source $VIMHOME/plugged/vimrc/plugins.vim
 call plug#end()
+
+"load plugin now so vimrc still has a chance to override settings
+call plug#load('vimrc')
+let g:vimrc_loaded = 1
 endif
 
 endfunction

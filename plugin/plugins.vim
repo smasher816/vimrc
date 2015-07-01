@@ -1,3 +1,7 @@
+if exists('g:vimrc_loaded')
+	finish
+endif
+
 try
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1

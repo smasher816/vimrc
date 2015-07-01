@@ -1,3 +1,7 @@
+if exists('g:vimrc_loaded')
+	finish
+endif
+
 let mapleader=" "
 nnoremap <leader>e :CtrlP<CR>
 nnoremap <leader>w :w<CR>

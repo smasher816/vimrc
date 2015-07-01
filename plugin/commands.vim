@@ -1,3 +1,7 @@
+if exists('g:vimrc_loaded')
+	finish
+endif
+
 "open help in a vertical split
 command! -nargs=* -complete=help Help vertical belowright help <args>
 cnoreabbrev <expr> h getcmdtype() == ":" && getcmdline() == 'h' ? 'Help' : 'h'
